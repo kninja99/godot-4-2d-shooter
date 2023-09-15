@@ -1,0 +1,5 @@
+res://scenes/levels/level.tscn
+res://scenes/objects/bill_board.tscn
+res://scenes/Player/player.tscn
+res://scenes/objects/bed.tscn
+res://scenes/Enemys/drone.tscn
