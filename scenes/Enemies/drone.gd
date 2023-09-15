@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const speed = 500
+const speed = 300
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
