@@ -1,22 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://85xs2e0x5b0n"]
+[gd_scene load_steps=5 format=3 uid="uid://85xs2e0x5b0n"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_10rg6"]
+[ext_resource type="Texture2D" uid="uid://c8862tn5odwf3" path="res://graphics/objects/gate.png" id="3_gqqk4"]
 [ext_resource type="PackedScene" uid="uid://1r6icio3w4n4" path="res://scenes/Player/player.tscn" id="3_t73gj"]
-[ext_resource type="PackedScene" uid="uid://v1ffv70t05y3" path="res://scenes/objects/bill_board.tscn" id="4_7w7vo"]
-[ext_resource type="PackedScene" uid="uid://cj8elmbrwo2kp" path="res://scenes/objects/bed.tscn" id="4_u71d6"]
-[ext_resource type="PackedScene" uid="uid://3i6kjfg1383a" path="res://scenes/Enemies/drone.tscn" id="5_1nll1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yambc"]
+size = Vector2(813, 150)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_10rg6")
 
-[node name="Bed" parent="." instance=ExtResource("4_u71d6")]
-position = Vector2(997, 96)
+[node name="Gate" type="StaticBody2D" parent="."]
+
+[node name="GateImg" type="Sprite2D" parent="Gate"]
+position = Vector2(524, -486)
+texture = ExtResource("3_gqqk4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
+polygon = PackedVector2Array(-913, -1265, -910, 59, -889, 145, -830, 226, -780, 259, -729, 283, -666, 292, 155, 293, 153, 190, 166, 133, 205, 110, 971, 113, 989, 133, 1007, 163, 1012, 192, 1015, 288, 1854, 289, 1888, 283, 1959, 258, 2023, 198, 2054, 151, 2079, 85, 2084, 31, 2083, -1265)
+
+[node name="Area2D" type="Area2D" parent="Gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
+position = Vector2(581.5, 219)
+shape = SubResource("RectangleShape2D_yambc")
 
 [node name="Player" parent="." instance=ExtResource("3_t73gj")]
-position = Vector2(727, 363)
+position = Vector2(606, 597)
 
-[node name="Billboard" parent="." instance=ExtResource("4_7w7vo")]
-position = Vector2(563, 581)
-
-[node name="Drone" parent="." instance=ExtResource("5_1nll1")]
-position = Vector2(112, 318)
+[connection signal="body_entered" from="Gate/Area2D" to="." method="_on_area_2d_body_entered"]
