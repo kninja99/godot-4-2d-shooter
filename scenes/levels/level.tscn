@@ -7,12 +7,14 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_10rg6")
 
-[node name="Player" parent="." instance=ExtResource("3_t73gj")]
-position = Vector2(606, 597)
-
 [node name="Gate" parent="." instance=ExtResource("3_762u7")]
 position = Vector2(502, -538)
 
+[node name="Player" parent="." instance=ExtResource("3_t73gj")]
+position = Vector2(606, 597)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade_signal" from="Player" to="." method="_on_player_grenade_signal"]
 [connection signal="laser_signal" from="Player" to="." method="_on_player_laser_signal"]
-[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]

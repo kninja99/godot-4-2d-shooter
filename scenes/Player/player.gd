@@ -4,8 +4,8 @@ const speed = 500
 var can_laser: bool = true
 var can_grenade: bool = true
 # custom signals
-signal laser_signal
-signal grenade_signal
+signal laser_signal(pos,dir)
+signal grenade_signal(pos,dir)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -18,17 +18,25 @@ func _process(_delta):
 	velocity = direction * speed
 	move_and_slide()
 	
+	# rotation of player
+	look_at(get_global_mouse_position())
+	
 	# get laser shooting input
+	var player_dir = (get_global_mouse_position() - position).normalized()
 	if Input.is_action_pressed("primary action") and can_laser:
-		print("shoot laser")
+		# randomly select laser start
+		var laser_markers = $LaserStartPositions.get_children()
+		var selected_laser = laser_markers[randi() % laser_markers.size()]
 		can_laser = false
-		laser_signal.emit()
+		# emit the position we selected
+		laser_signal.emit(selected_laser.global_position, player_dir)
 		$LaserTimer.start()
 	# grenade input
 	if Input.is_action_just_pressed("secondary action") and can_grenade:
-		print("shoot grenade")
+		var grenade_markers = $LaserStartPositions.get_children()
+		var selected_grenade = grenade_markers[randi() % grenade_markers.size()]
 		can_grenade = false
-		grenade_signal.emit()
+		grenade_signal.emit(selected_grenade.global_position,player_dir)
 		$GrenadeTimer.start()
 	
 

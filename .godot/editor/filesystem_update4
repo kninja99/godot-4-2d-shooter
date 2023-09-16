@@ -5,3 +5,7 @@ res://scenes/Player/player.gd
 res://scenes/Player/player.tscn
 res://scenes/objects/gate.tscn
 res://scenes/objects/gate.gd
+res://scenes/Projectiles/laser.tscn
+res://scenes/Projectiles/laser.gd
+res://scenes/Projectiles/grenade.tscn
+res://scenes/Projectiles/grenade.gd
