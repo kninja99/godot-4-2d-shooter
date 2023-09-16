@@ -3,6 +3,9 @@ const speed = 500
 
 var can_laser: bool = true
 var can_grenade: bool = true
+# custom signals
+signal laser_signal
+signal grenade_signal
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,11 +22,13 @@ func _process(_delta):
 	if Input.is_action_pressed("primary action") and can_laser:
 		print("shoot laser")
 		can_laser = false
+		laser_signal.emit()
 		$LaserTimer.start()
 	# grenade input
 	if Input.is_action_just_pressed("secondary action") and can_grenade:
 		print("shoot grenade")
 		can_grenade = false
+		grenade_signal.emit()
 		$GrenadeTimer.start()
 	
 

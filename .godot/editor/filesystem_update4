@@ -3,3 +3,5 @@ res://scenes/Enemies/drone.tscn
 res://scenes/levels/level.gd
 res://scenes/Player/player.gd
 res://scenes/Player/player.tscn
+res://scenes/objects/gate.tscn
+res://scenes/objects/gate.gd
