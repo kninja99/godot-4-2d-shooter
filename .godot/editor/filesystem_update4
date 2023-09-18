@@ -1,5 +1,8 @@
-res://scenes/Player/player.tscn
+res://scenes/objects/steamvent.tscn
 res://scenes/levels/level.tscn
+res://scenes/Player/player.tscn
 res://scenes/Projectiles/laser.tscn
-res://scenes/Projectiles/grenade.tscn
+res://scenes/Player/player.gd
 res://scenes/objects/house.tscn
+res://scenes/objects/simple_light.tscn
+res://scenes/objects/wall_light.tscn

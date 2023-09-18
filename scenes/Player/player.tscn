@@ -1,12 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://1r6icio3w4n4"]
+[gd_scene load_steps=7 format=3 uid="uid://1r6icio3w4n4"]
 
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_200i2"]
 [ext_resource type="Texture2D" uid="uid://2n5mfldwcme8" path="res://graphics/player/player.png" id="1_syffq"]
+[ext_resource type="Texture2D" uid="uid://beu4ul8gmexiy" path="res://graphics/decals/white.png" id="3_j68yq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0iwe"]
 radius = 66.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uykuh"]
+emission_shape = 1
+emission_sphere_radius = 15.0
+particle_flag_disable_z = true
+spread = 15.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.6
+color = Color(0, 0.811765, 0.898039, 0.0196078)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r5a30"]
+polygon = PackedVector2Array(1, -58, 8, -59, 13, -59, 16, -57, 24, -60, 27, -60, 32, -56, 37, -50, 40, -46, 47, -41, 47, -37, 51, -30, 52, -28, 59, -28, 63, -26, 66, -23, 74, -15, 78, -10, 80, -10, 83, -9, 85, -11, 87, -11, 92, -10, 99, -5, 100, -3, 112, -2, 114, 2, 121, 3, 127, 4, 126, 8, 126, 10, 131, 7, 134, 10, 136, 15, 135, 28, 132, 32, 130, 33, 127, 32, 125, 31, 124, 32, 125, 35, 125, 38, 115, 38, 113, 35, 109, 38, 107, 42, 101, 45, 99, 47, 98, 52, 94, 54, 76, 54, 65, 53, 61, 50, 62, 45, 67, 43, 70, 42, 53, 42, 47, 42, 43, 43, 32, 47, 26, 48, 20, 53, 9, 58, 2, 59, -2, 59, -9, 61, -17, 60, -26, 58, -31, 55, -33, 48, -35, 44, -39, 38, -40, 34, -45, 31, -48, 26, -50, 22, -48, 19, -47, 15, -52, 15, -55, 7, -56, -8, -56, -21, -49, -30, -48, -37, -42, -42, -37, -46, -30, -47, -27, -45, -27, -42, -23, -46, -24, -51, -12, -57, -9, -56, -10, -53)
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 31
 script = ExtResource("1_200i2")
 
 [node name="Playerimg" type="Sprite2D" parent="."]
@@ -39,6 +58,18 @@ position = Vector2(132, 29)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(142, 21)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_uykuh")
+texture = ExtResource("3_j68yq")
+lifetime = 0.2
+one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_r5a30")
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]

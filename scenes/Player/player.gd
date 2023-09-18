@@ -30,6 +30,7 @@ func _process(_delta):
 		can_laser = false
 		# emit the position we selected
 		laser_signal.emit(selected_laser.global_position, player_dir)
+		$GPUParticles2D.emitting = true
 		$LaserTimer.start()
 	# grenade input
 	if Input.is_action_just_pressed("secondary action") and can_grenade:

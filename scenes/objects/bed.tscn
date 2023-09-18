@@ -8,6 +8,8 @@
 size = Vector2(316, 184)
 
 [node name="Bed" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
 
 [node name="Bedimg" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
