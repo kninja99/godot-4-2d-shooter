@@ -1,95 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://85xs2e0x5b0n"]
+[gd_scene load_steps=3 format=3 uid="uid://85xs2e0x5b0n"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_10rg6"]
-[ext_resource type="Texture2D" uid="uid://wvnq82hqa0lg" path="res://graphics/ground/stones.png" id="2_kd0u0"]
-[ext_resource type="PackedScene" uid="uid://cgk217m0nwgbf" path="res://scenes/objects/steamvent.tscn" id="3_6klgr"]
-[ext_resource type="PackedScene" uid="uid://ccburwswhiy5" path="res://scenes/objects/gate.tscn" id="3_762u7"]
-[ext_resource type="Texture2D" uid="uid://bq5ayq18l7pbq" path="res://graphics/decals/dirt_patch.png" id="3_ok6gx"]
 [ext_resource type="PackedScene" uid="uid://1r6icio3w4n4" path="res://scenes/Player/player.tscn" id="3_t73gj"]
-[ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="4_7tqrd"]
-[ext_resource type="Texture2D" uid="uid://c7shvj3xlt2y8" path="res://graphics/tilesets/soil.png" id="5_k7ys6"]
-[ext_resource type="PackedScene" uid="uid://c383ofp0e8id8" path="res://scenes/objects/house.tscn" id="7_s5bkx"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_upo1r"]
-resource_name = "Walls"
-texture = ExtResource("4_7tqrd")
-texture_region_size = Vector2i(390, 390)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-0:3/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jshvv"]
-resource_name = "soild"
-texture = ExtResource("5_k7ys6")
-texture_region_size = Vector2i(390, 390)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ehm81"]
-tile_size = Vector2i(390, 390)
-sources/0 = SubResource("TileSetAtlasSource_upo1r")
-sources/1 = SubResource("TileSetAtlasSource_jshvv")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_10rg6")
 
 [node name="Ground" type="Node2D" parent="."]
 
-[node name="Soil" type="Sprite2D" parent="Ground"]
-texture_repeat = 2
-position = Vector2(517, 675)
-texture = ExtResource("2_kd0u0")
-region_enabled = true
-region_rect = Rect2(-3796.53, -2679.92, 16000, 10000)
-
-[node name="steamvent" parent="Ground/Soil" instance=ExtResource("3_6klgr")]
-position = Vector2(-414, -157)
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground"]
-modulate = Color(1, 1, 0.752941, 0.811765)
-position = Vector2(-492, 1542)
-scale = Vector2(1.17554, 1.24875)
-texture = ExtResource("3_ok6gx")
-
-[node name="TileMap" type="TileMap" parent="Ground"]
-tile_set = SubResource("TileSet_ehm81")
-format = 2
-layer_0/name = "Soils"
-layer_1/name = "Walls"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-65531, 65536, 0, -65530, 65536, 0, -65529, 65536, 0, -65528, 65536, 0, -65527, 65536, 0, -65526, 65536, 0, -3, 65536, 0, -4, 65536, 0, -5, 65536, 0, -6, 65536, 0, -7, 65536, 0, -8, 65536, 0, -65525, 131072, 2, -9, 65536, 2, -65545, 0, 2, -131081, 0, 2, -196617, 0, 2, -262153, 0, 2, -327689, 0, 2, -131061, 0, 2, -196597, 0, 2, -262133, 0, 2, -327669, 0, 2, -393205, 0, 2, -458741, 0, 2, -524277, 0, 2, -393225, 0, 2, -458761, 0, 2, -589813, 0, 2, -655349, 0, 2, -720885, 0, 2, -524297, 0, 2, -589833, 0, 2, -655369, 0, 2)
-
-[node name="Gate" parent="." instance=ExtResource("3_762u7")]
-position = Vector2(502, -538)
-
-[node name="House" parent="." instance=ExtResource("7_s5bkx")]
-position = Vector2(3950, 1113)
-rotation = 1.5708
-scale = Vector2(1.17554, 1.24875)
-
 [node name="Player" parent="." instance=ExtResource("3_t73gj")]
 position = Vector2(606, 597)
 
 [node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
-[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[node name="Enemies" type="Node2D" parent="."]
+
 [connection signal="grenade_signal" from="Player" to="." method="_on_player_grenade_signal"]
 [connection signal="laser_signal" from="Player" to="." method="_on_player_laser_signal"]

@@ -1,8 +1,9 @@
 extends CharacterBody2D
-const speed = 500
 
 var can_laser: bool = true
 var can_grenade: bool = true
+@export var max_speed = 500
+var speed = max_speed
 # custom signals
 signal laser_signal(pos,dir)
 signal grenade_signal(pos,dir)

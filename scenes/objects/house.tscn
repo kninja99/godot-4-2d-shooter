@@ -1,11 +1,25 @@
-[gd_scene load_steps=35 format=3 uid="uid://c383ofp0e8id8"]
+[gd_scene load_steps=36 format=3 uid="uid://c383ofp0e8id8"]
 
 [ext_resource type="Texture2D" uid="uid://djfq3s52kwwu0" path="res://graphics/tilesets/interior.png" id="1_eynjr"]
 [ext_resource type="PackedScene" uid="uid://boomor0j5wayg" path="res://scenes/objects/wall_light.tscn" id="2_7dft5"]
 [ext_resource type="PackedScene" uid="uid://dw2m4thvvogbq" path="res://scenes/objects/simple_light.tscn" id="2_fgpja"]
 
+[sub_resource type="GDScript" id="GDScript_a43av"]
+script/source = "extends Area2D
+
+signal player_entered
+signal player_exited
+
+func _on_body_entered(_body):
+	player_entered.emit()
+
+
+func _on_body_exited(_body):
+	player_exited.emit()
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utwdu"]
-size = Vector2(3610, 2469)
+size = Vector2(3411, 2347)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ka36n"]
 polygon = PackedVector2Array(195, -21, 18, -21, -18, -21, -195, -25, -195, 25, -16, 17, -22, 17, 18, 21, 22, 21, 195, 19)
@@ -306,9 +320,10 @@ sources/0 = SubResource("TileSetAtlasSource_slndv")
 
 [node name="House" type="Area2D"]
 collision_layer = 16
+script = SubResource("GDScript_a43av")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(778, 205.5)
+position = Vector2(799.5, 196.5)
 shape = SubResource("RectangleShape2D_utwdu")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -340,3 +355,6 @@ scale = Vector2(2, 2)
 position = Vector2(2423, 46)
 rotation = 1.5708
 scale = Vector2(2, 2)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
