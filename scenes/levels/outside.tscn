@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3icxkrqsoeoh"]
+[gd_scene load_steps=14 format=3 uid="uid://b3icxkrqsoeoh"]
 
 [ext_resource type="PackedScene" uid="uid://85xs2e0x5b0n" path="res://scenes/levels/level.tscn" id="1_47fry"]
 [ext_resource type="PackedScene" uid="uid://ccburwswhiy5" path="res://scenes/objects/gate.tscn" id="2_kfvu4"]
@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bq5ayq18l7pbq" path="res://graphics/decals/dirt_patch.png" id="6_5teuh"]
 [ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="7_3504k"]
 [ext_resource type="Texture2D" uid="uid://c7shvj3xlt2y8" path="res://graphics/tilesets/soil.png" id="8_yi0pj"]
-[ext_resource type="PackedScene" uid="uid://dafisdphijj3o" path="res://scenes/Container/box.tscn" id="10_sqke3"]
-[ext_resource type="PackedScene" uid="uid://ca5314vxd505o" path="res://scenes/Container/toilet.tscn" id="11_jctdo"]
 
 [sub_resource type="GDScript" id="GDScript_jbh7h"]
 script/source = "extends LevelParent
@@ -22,6 +20,7 @@ func _on_gate_player_entered_gate(_body):
 	# stoping the player
 	var tween = create_tween()
 	tween.tween_property($Player, \"speed\", 0,.5)
+	get_tree().change_scene_to_file(\"res://scenes/levels/inside.tscn\")
 
 
 func _on_house_player_entered():
@@ -138,7 +137,6 @@ scale = Vector2(1.17554, 1.24875)
 
 [node name="LightFanAnimation" parent="Ground" index="2" instance=ExtResource("5_snl0e")]
 position = Vector2(3779, 1807)
-autoplay = "default"
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground" index="3"]
 modulate = Color(1, 1, 0.752941, 0.811765)
@@ -161,11 +159,9 @@ layer_1/tile_data = PackedInt32Array(-65531, 65536, 0, -65530, 65536, 0, -65529,
 [node name="Gate" parent="." index="1" instance=ExtResource("2_kfvu4")]
 position = Vector2(554, -801)
 
-[node name="Toilet" parent="." index="5" instance=ExtResource("11_jctdo")]
-position = Vector2(-360, 421)
-
-[node name="Box" parent="." index="6" instance=ExtResource("10_sqke3")]
-position = Vector2(962, 346)
+[node name="Player" parent="." index="2"]
+position = Vector2(517, 337)
+metadata/_edit_group_ = true
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]

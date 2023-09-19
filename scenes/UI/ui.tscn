@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://corm7qtskadpc"]
+
+[ext_resource type="Texture2D" uid="uid://bx608q6dmm31d" path="res://graphics/ui/bullet.png" id="1_ax2nt"]
+[ext_resource type="Theme" uid="uid://bwuqbfr8voo2r" path="res://scenes/UI/main_theme.tres" id="1_fh8k5"]
+[ext_resource type="Texture2D" uid="uid://qvpnvhxqdj5t" path="res://graphics/ui/grenade.png" id="2_sgkp3"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="LaserContainer" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.953
+anchor_right = 0.01
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LaserContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="LaserContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_fh8k5")
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LaserContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_ax2nt")
+expand_mode = 4
+
+[node name="GrenadeContainer" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.05
+anchor_top = 0.897
+anchor_right = 0.085
+anchor_bottom = 1.0
+offset_top = 0.320007
+offset_right = 0.32
+grow_vertical = 0
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GrenadeContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GrenadeContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_fh8k5")
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GrenadeContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_sgkp3")
+expand_mode = 4

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://85xs2e0x5b0n"]
+[gd_scene load_steps=4 format=3 uid="uid://85xs2e0x5b0n"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_10rg6"]
+[ext_resource type="PackedScene" uid="uid://corm7qtskadpc" path="res://scenes/UI/ui.tscn" id="3_lpfm4"]
 [ext_resource type="PackedScene" uid="uid://1r6icio3w4n4" path="res://scenes/Player/player.tscn" id="3_t73gj"]
 
 [node name="Level" type="Node2D"]
@@ -15,6 +16,8 @@ position = Vector2(606, 597)
 metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("3_lpfm4")]
 
 [connection signal="grenade_signal" from="Player" to="." method="_on_player_grenade_signal"]
 [connection signal="laser_signal" from="Player" to="." method="_on_player_laser_signal"]
